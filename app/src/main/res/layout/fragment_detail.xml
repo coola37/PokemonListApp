@@ -1,9 +1,112 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context="com.yigitkula.view.DetailFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="selectedPokemon"
+            type="com.yigitkula.pokemonlistapp.model.Pokemon" />
+    </data>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.DetailFragment"
+        android:orientation="vertical">
 
 
+        <ImageView
+            android:id="@+id/pokemonImage"
+            android:layout_width="match_parent"
+            android:layout_height="244dp"
+            android:layout_gravity="top"
+            android:src="@mipmap/ic_launcher_round"
+            android:downloadUrl="@{selectedPokemon.pokemonImg}"></ImageView>
 
+        <TextView
+            android:id="@+id/txt1"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_alignParentStart="true"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="64dp"
+            android:text="Name:"
+            android:textColor="@color/purple_700"
+            android:textSize="25sp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/txt2"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/txt1"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="64dp"
+            android:layout_marginTop="21dp"
+            android:text="Weight:"
+            android:textColor="@color/purple_700"
+            android:textSize="25sp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/txt3"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_below="@+id/txt2"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="65dp"
+            android:layout_marginTop="23dp"
+            android:text="Height"
+            android:textColor="@color/purple_700"
+            android:textSize="25sp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/pokeName"
+            android:layout_width="237dp"
+            android:layout_height="47dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            android:layout_marginEnd="9dp"
+            android:layout_marginBottom="281dp"
+            android:text="@{selectedPokemon.pokemonName}"
+            android:textSize="25sp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/pokeWeight"
+            android:layout_width="227dp"
+            android:layout_height="45dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="211dp"
+            android:text="@{selectedPokemon.pokemonHeight}"
+            android:textSize="25sp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/pokeHeight"
+            android:layout_width="217dp"
+            android:layout_height="49dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="166dp"
+            android:layout_marginBottom="135dp"
+            android:text="@{selectedPokemon.pokemonHeight}"
+            android:textSize="25sp"
+            android:textStyle="bold"></TextView>
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button"
+            android:layout_width="269dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="64dp"
+            android:layout_marginBottom="54dp"
+            android:text="Button" />
+
+    </RelativeLayout>
 </layout>
+
