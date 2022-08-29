@@ -1,7 +1,6 @@
 package com.yigitkula.pokemonlistapp.viewmodel
 
 import android.app.Application
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.yigitkula.pokemonlistapp.model.Pokedex
 import com.yigitkula.pokemonlistapp.model.Pokemon
@@ -20,6 +19,7 @@ class ListViewModel(application: Application) : BaseViewModel(application){
     private val disposable = CompositeDisposable()
     private var customPreferences = CustomSharedPreferences(getApplication())
     private var refrehTime = 10 * 60 * 1000 * 1000 * 1000L // -> 10 minutes in nanoseconds
+
 
     val pokemons = MutableLiveData<List<Pokemon>>()
     val pokemonError = MutableLiveData<Boolean>()
@@ -41,9 +41,10 @@ class ListViewModel(application: Application) : BaseViewModel(application){
         launch {
             val pokemons = PokemonDatabase(getApplication()).pokemonDao().getAllPokemons()
             showPokemons(pokemons)
-            Toast.makeText(getApplication(),"Pokemons Data From SQLite",Toast.LENGTH_LONG).show()
+            //Toast.makeText(getApplication(),"Pokemons Data From SQLite",Toast.LENGTH_LONG).show()
         }
     }
+
     fun getDataFromAPI(){
         pokemonLoading.value=true
         pokemonError.value=false
@@ -55,7 +56,7 @@ class ListViewModel(application: Application) : BaseViewModel(application){
             .subscribeWith(object: DisposableSingleObserver<Pokedex>(){
                 override fun onSuccess(t: Pokedex) {
                     storeInSQLite(t.pokemon!!)
-                    Toast.makeText(getApplication(),"Pokemons Data From API",Toast.LENGTH_LONG).show()
+                    //Toast.makeText(getApplication(),"Pokemons Data From API",Toast.LENGTH_LONG).show()
 
                 }
 
@@ -67,7 +68,7 @@ class ListViewModel(application: Application) : BaseViewModel(application){
             })
           )}
 
-    private fun showPokemons(pokemonList: List<Pokemon>) {
+    fun showPokemons(pokemonList: List<Pokemon>) {
         pokemons.value = pokemonList
         pokemonError.value = false
         pokemonLoading.value = false

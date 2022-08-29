@@ -41,9 +41,21 @@
             android:layout_below="@+id/txt1"
             android:layout_alignParentStart="true"
             android:layout_marginStart="64dp"
-            android:layout_marginTop="21dp"
+            android:layout_marginTop="-1dp"
             android:text="Weight:"
             android:textColor="@color/purple_700"
+            android:textSize="25sp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/pokeWeight"
+            android:layout_width="227dp"
+            android:layout_height="45dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginBottom="234dp"
+            android:text="@{selectedPokemon.pokemonHeight}"
             android:textSize="25sp"
             android:textStyle="bold"></TextView>
 
@@ -53,10 +65,22 @@
             android:layout_height="50dp"
             android:layout_below="@+id/txt2"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="65dp"
-            android:layout_marginTop="23dp"
+            android:layout_marginStart="66dp"
+            android:layout_marginTop="1dp"
             android:text="Height"
             android:textColor="@color/purple_700"
+            android:textSize="25sp"
+            android:textStyle="bold"></TextView>
+
+        <TextView
+            android:id="@+id/pokeHeight"
+            android:layout_width="217dp"
+            android:layout_height="49dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="169dp"
+            android:layout_marginBottom="179dp"
+            android:text="@{selectedPokemon.pokemonHeight}"
             android:textSize="25sp"
             android:textStyle="bold"></TextView>
 
@@ -73,30 +97,6 @@
             android:textSize="25sp"
             android:textStyle="bold"></TextView>
 
-        <TextView
-            android:id="@+id/pokeWeight"
-            android:layout_width="227dp"
-            android:layout_height="45dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="211dp"
-            android:text="@{selectedPokemon.pokemonHeight}"
-            android:textSize="25sp"
-            android:textStyle="bold"></TextView>
-
-        <TextView
-            android:id="@+id/pokeHeight"
-            android:layout_width="217dp"
-            android:layout_height="49dp"
-            android:layout_alignParentStart="true"
-            android:layout_alignParentBottom="true"
-            android:layout_marginStart="166dp"
-            android:layout_marginBottom="135dp"
-            android:text="@{selectedPokemon.pokemonHeight}"
-            android:textSize="25sp"
-            android:textStyle="bold"></TextView>
-
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/button"
             android:layout_width="269dp"
@@ -105,7 +105,7 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="64dp"
             android:layout_marginBottom="54dp"
-            android:text="Button" />
+            android:text="Draw Overlay Permissesion" />
 
     </RelativeLayout>
 </layout>
