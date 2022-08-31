@@ -1,11 +1,14 @@
 package com.yigitkula.pokemonlistapp.model
 
+import android.os.Parcelable
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.google.gson.annotations.SerializedName
+import kotlinx.android.parcel.Parcelize
 
 @Entity
+@Parcelize
 data class Pokemon (
 
     @ColumnInfo(name="id")
@@ -25,7 +28,7 @@ data class Pokemon (
     val pokemonHeight: String?=null,
     @ColumnInfo(name="weight")
     @SerializedName("weight")
-    val pokemonWeight: String?=null){
+    val pokemonWeight: String?=null): Parcelable {
 
     @PrimaryKey(autoGenerate = true)
     var uuid: Int = 0

@@ -3,18 +3,31 @@ package com.yigitkula.pokemonlistapp.window
 import android.content.Context
 import android.os.Build
 import android.graphics.PixelFormat
+import android.sax.RootElement
 import android.util.Log
 import android.view.*
+import android.widget.LinearLayout
+import androidx.core.content.ContextCompat
 import com.yigitkula.pokemonlistapp.R
+import com.yigitkula.pokemonlistapp.databinding.FragmentDetailBinding
+import com.yigitkula.pokemonlistapp.databinding.PopupWindowBinding
+import com.yigitkula.pokemonlistapp.model.Pokemon
+import com.yigitkula.pokemonlistapp.view.DetailFragment
+import kotlinx.android.synthetic.main.fragment_detail.*
+import kotlinx.android.synthetic.main.fragment_detail.view.*
+import kotlinx.android.synthetic.main.popup_window.view.*
 import java.lang.Exception
 
 class Window(  // declaring required variables
-    private val context: Context
+    private val context: Context,
+    private val pokemon: Pokemon
 ) {
+    private lateinit var dataBinding: FragmentDetailBinding
     private val mView: View
     private var mParams: WindowManager.LayoutParams? = null
     private val mWindowManager: WindowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
     private val layoutInflater: LayoutInflater
+
     fun open() {
         try {
             // check if the view is already 
@@ -51,9 +64,9 @@ class Window(  // declaring required variables
             mParams = WindowManager.LayoutParams( // Shrink the window to wrap the content rather 
                 // than filling the screen
                 WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.MATCH_PARENT,  // Display it on top of other application windows
+                WindowManager.LayoutParams.WRAP_CONTENT,  // Display it on top of other application windows
                 WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,  // Don't let it grab the input focus
-                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,  // Make the underlying application window visible 
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,  // Make the underlying application window visible
                 // through any transparent parts
                 PixelFormat.TRANSLUCENT
             )
@@ -62,24 +75,34 @@ class Window(  // declaring required variables
             mParams = WindowManager.LayoutParams( // Shrink the window to wrap the content rather
                 // than filling the screen
                 WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.MATCH_PARENT,  // Display it on top of other application windows
-                WindowManager.LayoutParams.TYPE_SYSTEM_OVERLAY,  // Don't let it grab the input focus
+                WindowManager.LayoutParams.WRAP_CONTENT,  // Display it on top of other application windows
+                WindowManager.LayoutParams.TYPE_PHONE,  // Don't let it grab the input focus
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,  // Make the underlying application window visible
                 // through any transparent parts
                 PixelFormat.TRANSLUCENT
             )
         }
 
+        val binding = PopupWindowBinding.inflate(ContextCompat.getSystemService(context,
+            LayoutInflater::class.java)!!)
+
+        binding.pokemon = pokemon
+
+        // set onClickListener on the remove button, which removes
+        // the view from the window
+
+        binding.closeWin.setOnClickListener {
+            close()
+        }
+
+        mView = binding.root
 
         // getting a LayoutInflater
         layoutInflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        // inflating the view with the custom layout we created
-        mView = layoutInflater.inflate(R.layout.popup_window, null)
-        // set onClickListener on the remove button, which removes
-        // the view from the window
-        mView.findViewById<View>(R.id.window_close).setOnClickListener { close() }
+
         // Define the position of the
         // window within the screen
         mParams!!.gravity = Gravity.CENTER
+
     }
 }

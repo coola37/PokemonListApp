@@ -42,10 +42,6 @@ class PokemonListAdapter(val pokemonList: ArrayList<Pokemon>) :RecyclerView.Adap
         holder.view.pokemon = pokemonList[position]
         holder.view.listener = this
 
-
-
-
-
     }
 
     override fun getItemCount(): Int {

@@ -50,6 +50,9 @@ android {
 
 dependencies {
 
+
+    implementation 'com.google.firebase:firebase-messaging-ktx:23.0.7'
+    implementation 'com.google.firebase:firebase-config-ktx:21.1.1'
     implementation 'com.google.firebase:firebase-crashlytics-ktx:18.2.12'
     androidTestImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.1'
     // Import the BoM for the Firebase platform

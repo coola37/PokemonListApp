@@ -10,18 +10,24 @@ import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.app.Service
 import android.content.Context
+import android.view.View
 import androidx.core.app.NotificationCompat
 import androidx.core.content.ContextCompat.getSystemService
 import com.yigitkula.pokemonlistapp.R
+import com.yigitkula.pokemonlistapp.model.Pokemon
+import kotlinx.android.synthetic.main.fragment_detail.view.*
+import kotlinx.android.synthetic.main.popup_window.view.*
 import java.lang.UnsupportedOperationException
 
 class ForegroundService : Service() {
+    private var window: Window? = null
+
     override fun onBind(intent: Intent?): IBinder? {
         return null
     }
 
-    override fun onCreate() {
-        super.onCreate()
+    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+
         // create the custom or default notification
         // based on the android version
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) startMyOwnForeground() else startForeground(
@@ -29,13 +35,10 @@ class ForegroundService : Service() {
             Notification()
         )
 
-        // create an instance of Window class
-        // and display the content on screen
-        val window = Window(this)
-        window.open()
-    }
-
-    override fun onStartCommand(intent: Intent?, flags: Int, startId: Int): Int {
+        val pokemon: Pokemon = intent?.getParcelableExtra("pokemonData")!!
+        window?.close()
+        window = Window(this, pokemon)
+        window?.open()
         return super.onStartCommand(intent, flags, startId)
     }
 

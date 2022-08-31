@@ -21,6 +21,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.yigitkula.pokemonlistapp.R
 import com.yigitkula.pokemonlistapp.databinding.FragmentDetailBinding
+import com.yigitkula.pokemonlistapp.util.downloadFromUrl
 import com.yigitkula.pokemonlistapp.viewmodel.DetailViewModel
 import com.yigitkula.pokemonlistapp.window.ForegroundService
 import kotlinx.android.synthetic.main.fragment_detail.*
@@ -33,6 +34,7 @@ class DetailFragment : Fragment() {
     private lateinit var dataBinding : FragmentDetailBinding
     private lateinit var fragmentActivity: FragmentActivity
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -44,14 +46,14 @@ class DetailFragment : Fragment() {
         viewModel.getDataFromRoom(pokemonUuid)
 
         button.setOnClickListener {
-
             checkOverlayPermission()
             startPokemonDrawService()
-
         }
 
 
         observeLiveData()
+
+
     }
 
 
@@ -78,13 +80,16 @@ class DetailFragment : Fragment() {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             if (Settings.canDrawOverlays(fragmentActivity)) {
                 if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
-                    startForegroundService(fragmentActivity, Intent(fragmentActivity, ForegroundService::class.java))
+                    startForegroundService(fragmentActivity, Intent(fragmentActivity, ForegroundService::class.java)
+                        .putExtra("pokemonData", dataBinding.selectedPokemon))
                 } else {
-                    fragmentActivity.startService(Intent(fragmentActivity,ForegroundService::class.java))
+                    fragmentActivity.startService(Intent(fragmentActivity,ForegroundService::class.java)
+                        .putExtra("pokemonData", dataBinding.selectedPokemon))
                 }
             }
         } else {
-            fragmentActivity.startService(Intent(fragmentActivity, ForegroundService::class.java))
+            fragmentActivity.startService(Intent(fragmentActivity, ForegroundService::class.java)
+                .putExtra("pokemonData", dataBinding.selectedPokemon))
         }
     }
     fun checkOverlayPermission() {
@@ -101,6 +106,7 @@ class DetailFragment : Fragment() {
             pokemon?.let {
                 dataBinding.selectedPokemon = it
 
+
               /*  pokeName.text = pokemon.pokemonName
                 pokeHeight.text=pokemon.pokemonHeight
                 pokeWeight.text=pokemon.pokemonWeight
@@ -112,6 +118,6 @@ class DetailFragment : Fragment() {
     }
     override fun onResume() {
         super.onResume()
-//        startPokemonDrawService()
+       // startPokemonDrawService()
     }
 }
