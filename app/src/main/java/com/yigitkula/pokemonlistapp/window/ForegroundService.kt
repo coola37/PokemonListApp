@@ -30,10 +30,15 @@ class ForegroundService : Service() {
 
         // create the custom or default notification
         // based on the android version
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) startMyOwnForeground() else startForeground(
-            1,
-            Notification()
-        )
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
+            startMyOwnForeground()
+        }
+        else {
+            startForeground(
+                1,
+                Notification()
+            )
+        }
 
         val pokemon: Pokemon = intent?.getParcelableExtra("pokemonData")!!
         window?.close()

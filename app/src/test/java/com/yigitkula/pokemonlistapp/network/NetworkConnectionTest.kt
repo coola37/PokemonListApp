@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.test.core.app.ApplicationProvider
 import com.google.common.truth.Truth.assertThat
 import kotlinx.coroutines.ExperimentalCoroutinesApi
+import org.junit.After
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
@@ -21,6 +22,8 @@ class NetworkConnectionTest{
     fun setup(){
         networkConnection = NetworkConnection(ApplicationProvider.getApplicationContext())
     }
+
+
 
     @Test
     fun `network check test`(){

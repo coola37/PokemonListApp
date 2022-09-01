@@ -32,7 +32,7 @@
             android:layout_centerVertical="true"
             android:layout_marginStart="64dp"
             android:text="Name:"
-            android:textColor="@color/purple_700"
+            android:textColor="@color/orange"
             android:textSize="25sp"
             android:textStyle="bold"></TextView>
 
@@ -45,7 +45,7 @@
             android:layout_marginStart="64dp"
             android:layout_marginTop="-1dp"
             android:text="Weight:"
-            android:textColor="@color/purple_700"
+            android:textColor="@color/orange"
             android:textSize="25sp"
             android:textStyle="bold"></TextView>
 
@@ -67,10 +67,10 @@
             android:layout_height="50dp"
             android:layout_below="@+id/txt2"
             android:layout_alignParentStart="true"
-            android:layout_marginStart="66dp"
+            android:layout_marginStart="64dp"
             android:layout_marginTop="1dp"
             android:text="Height"
-            android:textColor="@color/purple_700"
+            android:textColor="@color/orange"
             android:textSize="25sp"
             android:textStyle="bold"></TextView>
 
@@ -80,8 +80,8 @@
             android:layout_height="49dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="169dp"
-            android:layout_marginBottom="179dp"
+            android:layout_marginStart="160dp"
+            android:layout_marginBottom="176dp"
             android:text="@{selectedPokemon.pokemonHeight}"
             android:textSize="25sp"
             android:textStyle="bold"></TextView>
@@ -108,7 +108,9 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="64dp"
             android:layout_marginBottom="54dp"
-            android:text="Draw Overlay Permissesion" />
+            android:text="Show Pokemon In Overlay"
+            android:textColor="@color/white"
+            android:background="@color/orange"/>
 
     </RelativeLayout>
 </layout>

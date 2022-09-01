@@ -32,7 +32,7 @@
                 <ImageView
                     android:id="@+id/popupImg"
                     android:layout_width="387dp"
-                    android:layout_height="72dp"
+                    android:layout_height="62dp"
                     android:downloadUrl="@{pokemon.pokemonImg}" />
 
                 <TextView
@@ -40,7 +40,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@{pokemon.pokemonName}"
-                    android:textColor="#ffff"
+                    android:textColor="#EF430D"
                     android:textStyle="bold"
                     android:textSize="15sp"
                     android:layout_gravity="center" />

@@ -37,7 +37,7 @@ class ListFragment : Fragment() {
 
         rLayout.setOnRefreshListener {
             rvPokemon.visibility = View.GONE
-            pokemonError.visibility = View.GONE
+
             pokemonProBarLoading.visibility = View.VISIBLE
             viewModel.refreshFromAPI()
             rLayout.isRefreshing = false

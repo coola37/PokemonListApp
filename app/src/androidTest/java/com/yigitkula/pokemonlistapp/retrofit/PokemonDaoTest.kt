@@ -53,7 +53,26 @@ class PokemonDaoTest {
         dao.insertAll(examplePokemon)
         dao.deleteAllPokemons()
         val list = dao.getAllPokemons()
+        assertThat(list).isNotNull()
         assertThat(list).doesNotContain(examplePokemon)
+    }
+    @Test
+    fun oppositeInsertPokemonTest()= runBlocking{
+        val pokemon = Pokemon(1,"1","pikachu","www.com", "4", "4")
+        val pokemon2 = Pokemon(1,"1","pikachu","www.com", "4", "4")
+        dao.insertAll(pokemon)
+        val list = dao.getAllPokemons()
+        assertThat(list).doesNotContain(pokemon2)
+    }
+    @Test
+    fun oppositeDeleteTest() = runBlocking {
+        val examplePokemon = Pokemon(1,"1","pikachu","www.com", "4", "4")
+        val examplePokemon2 = Pokemon(1,"1","pikachu","www.com", "4", "4")
+        dao.insertAll(examplePokemon,examplePokemon2)
+        dao.deleteAllPokemons()
+        val list = dao.getAllPokemons()
+        assertThat(list).contains(examplePokemon)
+
 
 
 
