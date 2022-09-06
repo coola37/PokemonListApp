@@ -3,12 +3,21 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Coola/AndroidStudioProjects/PokemonListApp/app/src/main/res/drawable/carview.xml" value="0.1385" />
+        <entry key="..\:/Users/Coola/AndroidStudioProjects/PokemonListApp/app/src/main/res/drawable/img_border.xml" value="0.1595" />
+        <entry key="..\:/Users/Coola/AndroidStudioProjects/PokemonListApp/app/src/main/res/drawable/list_item_bg.xml" value="0.1605" />
+        <entry key="..\:/Users/Coola/AndroidStudioProjects/PokemonListApp/app/src/main/res/drawable/popup_bg.xml" value="0.1595" />
+        <entry key="..\:/Users/Coola/AndroidStudioProjects/PokemonListApp/app/src/main/res/drawable/popup_menu_bg.xml" value="0.1595" />
+        <entry key="..\:/Users/Coola/AndroidStudioProjects/PokemonListApp/app/src/main/res/layout-land/fragment_detail.xml" value="0.264" />
+        <entry key="..\:/Users/Coola/AndroidStudioProjects/PokemonListApp/app/src/main/res/layout-land/fragment_list.xml" value="0.2" />
+        <entry key="..\:/Users/Coola/AndroidStudioProjects/PokemonListApp/app/src/main/res/layout-land/popup_window.xml" value="0.3255208333333333" />
         <entry key="..\:/Users/Coola/AndroidStudioProjects/PokemonListApp/app/src/main/res/layout/activity_main.xml" value="0.264" />
         <entry key="..\:/Users/Coola/AndroidStudioProjects/PokemonListApp/app/src/main/res/layout/fragment_detail.xml" value="0.264" />
         <entry key="..\:/Users/Coola/AndroidStudioProjects/PokemonListApp/app/src/main/res/layout/fragment_list.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/Coola/AndroidStudioProjects/PokemonListApp/app/src/main/res/layout/pokemon_item.xml" value="0.22826086956521738" />
         <entry key="..\:/Users/Coola/AndroidStudioProjects/PokemonListApp/app/src/main/res/layout/pokemon_list_item.xml" value="0.25783132530120484" />
-        <entry key="..\:/Users/Coola/AndroidStudioProjects/PokemonListApp/app/src/main/res/layout/popup_window.xml" value="0.25" />
+        <entry key="..\:/Users/Coola/AndroidStudioProjects/PokemonListApp/app/src/main/res/layout/popup_window.xml" value="0.264" />
+        <entry key="..\:/Users/Coola/AndroidStudioProjects/PokemonListApp/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1605" />
         <entry key="..\:/Users/Coola/AndroidStudioProjects/PokemonListApp/app/src/main/res/xml/cofig.xml" value="0.24635416666666668" />
         <entry key="..\:/Users/Coola/AndroidStudioProjects/PokemonListApp/app/src/main/res/xml/network_security_config.xml" value="0.14739583333333334" />
       </map>

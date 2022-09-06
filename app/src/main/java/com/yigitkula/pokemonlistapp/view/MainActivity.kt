@@ -21,12 +21,13 @@ import kotlinx.coroutines.launch
 class MainActivity : AppCompatActivity() {
 
     private lateinit var analytics: FirebaseAnalytics
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         networkCheck()
-
+       supportActionBar?.hide()
     }
     private fun networkCheck(){
         val networkConnection = NetworkConnection(applicationContext)

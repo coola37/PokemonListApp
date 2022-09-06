@@ -23,7 +23,6 @@ class ListFragment : Fragment() {
     private val pokeAdapter = PokemonListAdapter(arrayListOf())
 
 
-
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -43,6 +42,7 @@ class ListFragment : Fragment() {
             rLayout.isRefreshing = false
         }
         observeLiveData()
+
     }
 
     override fun onCreateView(
@@ -62,16 +62,6 @@ class ListFragment : Fragment() {
                     pokeAdapter.updatePokemonList(pokemons)
                 }
             })
-//            viewModel.pokemonError.observe(viewLifecycleOwner, Observer { error ->
-//                error?.let {
-//                    if (it) {
-//                        pokemonError.visibility = View.VISIBLE
-//
-//                    } else {
-//                        pokemonError.visibility = View.GONE
-//                    }
-//                }
-//            })
             viewModel.pokemonLoading.observe(viewLifecycleOwner, Observer { loading ->
                 loading?.let {
                     if (it) {

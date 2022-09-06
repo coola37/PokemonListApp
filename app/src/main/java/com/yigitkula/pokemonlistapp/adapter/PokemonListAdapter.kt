@@ -58,6 +58,8 @@ class PokemonListAdapter(val pokemonList: ArrayList<Pokemon>) :RecyclerView.Adap
         val uuid = v.pokemonUuidText.text.toString().toInt()
         val action = ListFragmentDirections.actionListFragmentToDetailFragment(uuid)
         Navigation.findNavController(v).navigate(action)
+
+
     }
 }
 

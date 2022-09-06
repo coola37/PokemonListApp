@@ -9,7 +9,7 @@ import android.view.*
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
 import com.yigitkula.pokemonlistapp.R
-import com.yigitkula.pokemonlistapp.databinding.FragmentDetailBinding
+
 import com.yigitkula.pokemonlistapp.databinding.PopupWindowBinding
 import com.yigitkula.pokemonlistapp.model.Pokemon
 import com.yigitkula.pokemonlistapp.view.DetailFragment
@@ -22,7 +22,6 @@ class Window(
     private val context: Context,
     private val pokemon: Pokemon
 ) {
-    private lateinit var dataBinding: FragmentDetailBinding
     private val mView: View
     private var mParams: WindowManager.LayoutParams? = null
     private val mWindowManager: WindowManager = context.getSystemService(Context.WINDOW_SERVICE) as WindowManager
@@ -54,8 +53,8 @@ class Window(
     init {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             mParams = WindowManager.LayoutParams(
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.WRAP_CONTENT,
+               500,
+                500,
                 WindowManager.LayoutParams.TYPE_APPLICATION_OVERLAY,
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                 PixelFormat.TRANSLUCENT
@@ -63,8 +62,8 @@ class Window(
         }
         else {
             mParams = WindowManager.LayoutParams(
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.WRAP_CONTENT,
+                500,
+                500,
                 WindowManager.LayoutParams.TYPE_PHONE,
                 WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
                 PixelFormat.TRANSLUCENT
@@ -75,7 +74,6 @@ class Window(
             LayoutInflater::class.java)!!)
 
         binding.pokemon = pokemon
-
 
 
         binding.closeWin.setOnClickListener {

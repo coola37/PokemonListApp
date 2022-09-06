@@ -1,27 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    app:circularflow_defaultRadius="@dimen/spacing">
 
     <data>
+
         <import type="com.yigitkula.pokemonlistapp.model.Pokemon" />
+
         <variable
             name="pokemon"
             type="Pokemon" />
     </data>
 
-    <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:tools="http://schemas.android.com/tools"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        tools:context=".window.Window"
-        android:gravity="center"
+    <RelativeLayout
+        android:id="@+id/popupLayout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/popup_bg"
+        android:gravity="center"
         android:padding="4dp"
-        android:background="@null">
+        tools:context=".window.Window">
 
-        <androidx.cardview.widget.CardView
+
             android:layout_width="match_parent"
             android:layout_height="149dp"
-            >
+            android:background="@drawable/carview"
+            android:backgroundTint="#F1EEEE"
+            app:cardCornerRadius="15dp">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -31,28 +37,32 @@
 
                 <ImageView
                     android:id="@+id/popupImg"
-                    android:layout_width="387dp"
+                    android:layout_width="391dp"
                     android:layout_height="62dp"
-                    android:downloadUrl="@{pokemon.pokemonImg}" />
+                    android:layout_gravity="center"
+                    android:downloadUrl="@{pokemon.pokemonImg}"
+                    android:foregroundGravity="center" />
 
                 <TextView
                     android:id="@+id/popupName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:backgroundTint="#FF5722"
                     android:text="@{pokemon.pokemonName}"
-                    android:textColor="#EF430D"
-                    android:textStyle="bold"
+                    android:textColor="#FF5722"
                     android:textSize="15sp"
-                    android:layout_gravity="center" />
+                    android:textStyle="bold" />
 
                 <Button
                     android:id="@+id/closeWin"
                     android:layout_width="match_parent"
                     android:layout_height="35dp"
                     android:layout_gravity="bottom"
-                    android:text="cancel" />
+                    android:textColor="@color/orange"
+                    android:text="Cancel"
+                    android:textStyle="bold"/>
             </LinearLayout>
-        </androidx.cardview.widget.CardView>
     </RelativeLayout>
 </layout>
 

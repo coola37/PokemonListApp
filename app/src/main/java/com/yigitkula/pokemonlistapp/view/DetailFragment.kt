@@ -19,6 +19,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.FragmentActivity
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.Navigation
 import com.yigitkula.pokemonlistapp.R
 import com.yigitkula.pokemonlistapp.databinding.FragmentDetailBinding
 import com.yigitkula.pokemonlistapp.util.downloadFromUrl
@@ -49,7 +50,10 @@ class DetailFragment : Fragment() {
             checkOverlayPermission()
             startPokemonDrawService()
         }
-
+        button2.setOnClickListener {
+            val action = DetailFragmentDirections.actionDetailFragmentToListFragment()
+            Navigation.findNavController(it).navigate(action)
+        }
 
         observeLiveData()
 

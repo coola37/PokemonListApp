@@ -13,21 +13,27 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:context=".view.DetailFragment"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:id="@+id/detailFragmentLayout">
 
 
         <ImageView
             android:id="@+id/pokemonImage"
-            android:layout_width="match_parent"
-            android:layout_height="244dp"
+            android:layout_width="237dp"
+            android:layout_height="174dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
             android:layout_gravity="top"
-            android:src="@mipmap/ic_launcher_round"
-            android:downloadUrl="@{selectedPokemon.pokemonImg}"></ImageView>
+            android:layout_marginEnd="86dp"
+            android:layout_marginBottom="401dp"
+            android:background="@drawable/img_border"
+            android:downloadUrl="@{selectedPokemon.pokemonImg}"
+            android:src="@mipmap/ic_launcher_round"></ImageView>
 
         <TextView
             android:id="@+id/txt1"
             android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:layout_marginStart="64dp"
@@ -39,7 +45,7 @@
         <TextView
             android:id="@+id/txt2"
             android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             android:layout_below="@+id/txt1"
             android:layout_alignParentStart="true"
             android:layout_marginStart="64dp"
@@ -47,24 +53,24 @@
             android:text="Weight:"
             android:textColor="@color/orange"
             android:textSize="25sp"
-            android:textStyle="bold"></TextView>
+            android:textStyle="bold" />
 
         <TextView
             android:id="@+id/pokeWeight"
-            android:layout_width="227dp"
+            android:layout_width="237dp"
             android:layout_height="45dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginEnd="20dp"
+            android:layout_marginEnd="11dp"
             android:layout_marginBottom="234dp"
-            android:text="@{selectedPokemon.pokemonHeight}"
+            android:text="@{selectedPokemon.pokemonWeight}"
             android:textSize="25sp"
             android:textStyle="bold"></TextView>
 
         <TextView
             android:id="@+id/txt3"
             android:layout_width="100dp"
-            android:layout_height="50dp"
+            android:layout_height="45dp"
             android:layout_below="@+id/txt2"
             android:layout_alignParentStart="true"
             android:layout_marginStart="64dp"
@@ -74,23 +80,23 @@
             android:textSize="25sp"
             android:textStyle="bold"></TextView>
 
+
         <TextView
             android:id="@+id/pokeHeight"
-            android:layout_width="217dp"
-            android:layout_height="49dp"
+            android:layout_width="237dp"
+            android:layout_height="45dp"
             android:layout_alignParentStart="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="160dp"
-            android:layout_marginBottom="176dp"
+            android:layout_marginStart="164dp"
+            android:layout_marginBottom="187dp"
             android:text="@{selectedPokemon.pokemonHeight}"
             android:textSize="25sp"
             android:textStyle="bold"></TextView>
 
-
         <TextView
             android:id="@+id/pokeName"
             android:layout_width="237dp"
-            android:layout_height="47dp"
+            android:layout_height="45dp"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_centerInParent="true"
@@ -108,9 +114,21 @@
             android:layout_alignParentBottom="true"
             android:layout_marginStart="64dp"
             android:layout_marginBottom="54dp"
+            android:background="@drawable/list_item_bg"
             android:text="Show Pokemon In Overlay"
-            android:textColor="@color/white"
-            android:background="@color/orange"/>
+            android:textColor="@color/white" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/button2"
+            android:layout_width="269dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentBottom="true"
+            android:layout_marginStart="64dp"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/list_item_bg"
+            android:text="Back to Pokemon List"
+            android:textColor="@color/white" />
 
     </RelativeLayout>
 </layout>
