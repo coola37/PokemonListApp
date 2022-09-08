@@ -5,30 +5,34 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.appcompat.app.AppCompatActivity
+import android.widget.SearchView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.viewModels
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.google.firebase.analytics.FirebaseAnalytics
 import com.yigitkula.pokemonlistapp.R
 import com.yigitkula.pokemonlistapp.adapter.PokemonListAdapter
 import com.yigitkula.pokemonlistapp.viewmodel.ListViewModel
-import kotlinx.android.synthetic.main.fragment_detail.*
 import kotlinx.android.synthetic.main.fragment_list.*
 
-
 class ListFragment : Fragment() {
-    private lateinit var viewModel: ListViewModel
+    private val viewModel: ListViewModel by viewModels()
     private val pokeAdapter = PokemonListAdapter(arrayListOf())
-
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        searchBar.setOnQueryTextListener(object : SearchView.OnQueryTextListener,
+            androidx.appcompat.widget.SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return true
+            }
 
+            override fun onQueryTextChange(newText: String?): Boolean {
+                viewModel.search(newText ?: "")
+                return true
+            }
+        })
 
-
-        viewModel = ViewModelProvider(this).get(ListViewModel::class.java)
         viewModel.refreshData()
 
         rvPokemon.layoutManager = LinearLayoutManager(context)
@@ -43,6 +47,26 @@ class ListFragment : Fragment() {
         }
         observeLiveData()
 
+        bottomNavigationView.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.exit -> {
+                    activity?.finish()
+                    true
+                }
+                R.id.home -> {
+                    rvPokemon.visibility = View.GONE
+
+                    pokemonProBarLoading.visibility = View.VISIBLE
+                    viewModel.refreshFromAPI()
+                    rLayout.isRefreshing = false
+                    true
+                }
+                else -> false
+            }
+
+            true
+        }
+
     }
 
     override fun onCreateView(
@@ -54,25 +78,23 @@ class ListFragment : Fragment() {
     }
 
 
-     fun observeLiveData() {
-            viewModel.pokemons.observe(viewLifecycleOwner, Observer { pokemons ->
-
-                pokemons?.let {
-                    rvPokemon.visibility = View.VISIBLE
-                    pokeAdapter.updatePokemonList(pokemons)
-                }
-            })
-            viewModel.pokemonLoading.observe(viewLifecycleOwner, Observer { loading ->
-                loading?.let {
-                    if (it) {
-                        pokemonProBarLoading.visibility = View.VISIBLE
-                        rvPokemon.visibility = View.VISIBLE
-
-                    } else {
-                        pokemonProBarLoading.visibility = View.GONE
-                    }
-                }
-
-            })
+    fun observeLiveData() {
+        viewModel.pokemons.observe(viewLifecycleOwner) { pokemons ->
+            pokemons?.let {
+                rvPokemon.visibility = View.VISIBLE
+                pokeAdapter.updatePokemonList(pokemons)
+            }
         }
+        viewModel.pokemonLoading.observe(viewLifecycleOwner) { loading ->
+            loading?.let {
+                if (it) {
+                    pokemonProBarLoading.visibility = View.VISIBLE
+                    rvPokemon.visibility = View.VISIBLE
+
+                } else {
+                    pokemonProBarLoading.visibility = View.GONE
+                }
+            }
+        }
+    }
 }

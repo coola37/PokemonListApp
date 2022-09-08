@@ -3,66 +3,94 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/rLayout"
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:context=".view.ListFragment">
+        android:layout_height="match_parent">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+            android:id="@+id/rLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:orientation="vertical">
+            tools:context=".view.ListFragment">
 
-            <ImageView
-                android:id="@+id/imageView"
+            <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="56dp"
-                android:src="@mipmap/pokemon"
-                app:layout_constraintEnd_toEndOf="parent"
-                android:scaleX="1.3"
-                android:scaleY="1.3"
-                app:layout_constraintStart_toEndOf="@+id/pokemonError"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:layout_height="match_parent"
+                android:orientation="vertical">
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvPokemon"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/imageView"
-                tools:listitem="@layout/pokemon_list_item" />
+                <ImageView
+                    android:id="@+id/imageViewPokemon"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:scaleX="1.3"
+                    android:scaleY="1.3"
+                    android:src="@mipmap/pokemon"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/pokemonError"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <ProgressBar
-                android:id="@+id/pokemonProBarLoading"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <androidx.appcompat.widget.SearchView
+                    android:id="@+id/searchBar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintTop_toBottomOf="@+id/imageViewPokemon"
+                    android:layout_marginBottom="50dp"
+                    android:layout_marginTop="12dp"
+                    />
 
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvPokemon"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintLeft_toLeftOf="parent"
+                    app:layout_constraintRight_toRightOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/searchBar"
+                    tools:listitem="@layout/pokemon_list_item" />
 
-            <TextView
-                android:id="@+id/pokemonError"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Error"
-                android:textColor="@color/error"
-                android:textSize="25sp"
-                android:textStyle="bold"
-                android:visibility="gone"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.486" />
+                <ProgressBar
+                    android:id="@+id/pokemonProBarLoading"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:indeterminate="false"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+                <TextView
+                    android:id="@+id/pokemonError"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:text="Error"
+                    android:textColor="@color/error"
+                    android:textSize="25sp"
+                    android:textStyle="bold"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.498"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.486" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/bottomNavigationView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:menu="@menu/bottom_menu"
+            android:layout_gravity="bottom">
+
+        </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
 </layout>

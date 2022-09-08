@@ -15,7 +15,7 @@
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/logo"
         android:label="Pokemon List"
-        android:roundIcon="@mipmap/logo"
+        android:roundIcon="@mipmap/pokedex"
         android:supportsRtl="true"
         android:networkSecurityConfig="@xml/network_security_config"
         android:theme="@style/Theme.PokemonListApp"

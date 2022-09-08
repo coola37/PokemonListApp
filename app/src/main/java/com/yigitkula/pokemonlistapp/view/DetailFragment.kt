@@ -26,6 +26,8 @@ import com.yigitkula.pokemonlistapp.util.downloadFromUrl
 import com.yigitkula.pokemonlistapp.viewmodel.DetailViewModel
 import com.yigitkula.pokemonlistapp.window.ForegroundService
 import kotlinx.android.synthetic.main.fragment_detail.*
+import kotlinx.android.synthetic.main.fragment_detail.bottomNavigationView
+import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.popup_window.*
 
 
@@ -56,6 +58,23 @@ class DetailFragment : Fragment() {
         }
 
         observeLiveData()
+
+        bottomNavigationView.setOnItemSelectedListener {
+            when (it.itemId) {
+                R.id.exit -> {
+                    activity?.finish()
+                    true
+                }
+                R.id.home -> {
+                    val action = DetailFragmentDirections.actionDetailFragmentToListFragment()
+                    Navigation.findNavController(view).navigate(action)
+                    true
+                }
+                else -> false
+            }
+
+            true
+        }
 
 
     }

@@ -11,23 +11,26 @@ import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 
 
 class ListViewModel(application: Application) : BaseViewModel(application){
     private val pokemonApiService = PokemonApiService()
     private val disposable = CompositeDisposable()
     private var customPreferences = CustomSharedPreferences(getApplication())
-    private var refrehTime = 10 * 60 * 1000 * 1000 * 1000L // -> 10 minutes in nanoseconds
-
+    private var refreshTime = 10 * 60 * 1000 * 1000 * 1000L // -> 10 minutes in nanoseconds
 
     val pokemons = MutableLiveData<List<Pokemon>>()
     val pokemonError = MutableLiveData<Boolean>()
     val pokemonLoading = MutableLiveData<Boolean>()
 
+    private val pokemonNameMap: MutableMap<String, Pokemon> = LinkedHashMap()
+
     fun refreshData(){
         val updateTime = customPreferences.getTime()
-        if(updateTime != null && updateTime != 0L && System.nanoTime() - updateTime < refrehTime){
+        if(updateTime != null && updateTime != 0L && System.nanoTime() - updateTime < refreshTime){
             getDataFromSQLite()
         }else{
             getDataFromAPI()
@@ -36,10 +39,32 @@ class ListViewModel(application: Application) : BaseViewModel(application){
     fun refreshFromAPI(){
         getDataFromAPI()
     }
+
+    fun search(query: String) {
+        if (query.isBlank()) {
+            showPokemons(ArrayList(pokemonNameMap.values))
+        } else {
+            launch(Dispatchers.Default) {
+                val matchedPokemon = pokemonNameMap.keys.filter { it.contains(query, ignoreCase = true) }
+                val matchedPokemonList: MutableList<Pokemon> = ArrayList(matchedPokemon.size)
+                matchedPokemon.forEach {
+                    matchedPokemonList.add(pokemonNameMap[it]!!)
+                }
+                withContext(Dispatchers.Main) {
+                    showPokemons(matchedPokemonList)
+                }
+            }
+        }
+    }
+
     private fun getDataFromSQLite() {
         pokemonLoading.value=true
         launch {
             val pokemons = PokemonDatabase(getApplication()).pokemonDao().getAllPokemons()
+            withContext(Dispatchers.Default) {
+                pokemonNameMap.clear()
+                pokemonNameMap.putAll(pokemons.filter { it.pokemonName != null }.associateBy({ it.pokemonName!! }, { it }))
+            }
             showPokemons(pokemons)
             //Toast.makeText(getApplication(),"Pokemons Data From SQLite",Toast.LENGTH_LONG).show()
         }
@@ -81,7 +106,7 @@ class ListViewModel(application: Application) : BaseViewModel(application){
             var i = 0
             while(i<list.size){
                 list[i].uuid = listLong[i].toInt()
-                i = i+1
+                i++
             }
             showPokemons(list)
         }
